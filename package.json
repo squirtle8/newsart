@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/squirtle8/newsart/issues"
   },
-  "homepage": "https://github.com/squirtle8/newsart#readme"
+  "homepage": "https://github.com/squirtle8/newsart#readme",
+  "dependencies": {
+    "@apollo/server": "^4.4.0",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "graphql": "^16.6.0",
+    "http": "^0.0.1-security"
+  }
 }
