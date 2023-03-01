@@ -1,4 +1,4 @@
-import React from 'react';
+const React = require('react');
 
 const code = new URLSearchParams(window.location.search).get('code');
 

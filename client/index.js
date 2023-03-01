@@ -1,14 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import {createRoot} from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import App from './App'
+const React = require('react');
+const createRoot = require('react-dom/client');
+const BrowserRouter = require('react-router-dom');
+const App = require('./App.jsx');
 
+const root = createRoot(document.getElementById("root"));
 
-const container = document.getElementById('root');
-const root = createRoot(container);
 root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+  <App />
 );

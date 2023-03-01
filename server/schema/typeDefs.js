@@ -1,4 +1,4 @@
-export const typeDefs = `#graphql
+const typeDefs = `#graphql
   type Article {
     title: String!,
     date: String!
