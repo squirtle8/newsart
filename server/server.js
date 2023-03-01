@@ -3,17 +3,15 @@ import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import cors from 'cors';
 import http from 'http';
-// import { json } from 'body-parser';
 import express from 'express';
-
-import { typeDefs }  from './schema/typeDefs.js';
-import { resolvers } from './schema/resolvers.js';
+import { typeDefs }  from './gql/typeDefs.js';
+import { resolvers } from './gql/resolvers.js';
 
 const PORT = 3000;
 const app = express();
 
 // routers
-import newsRouter from './routes/news.js';
+import newsRouter from './rest/routes/news.js';
 app.use('/news', newsRouter);
 // import artRouter from './art';
 // app.use('/art', artRouter);
@@ -25,7 +23,7 @@ app.get('/',
 );
 
 
-const ApolloStart = async() => {
+const startServer = async() => {
 
   const httpServer = http.createServer(app);
   
@@ -35,19 +33,22 @@ const ApolloStart = async() => {
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
   
+  //start apollo server
   await server.start();
   
   app.use(
     '/graphql',
     cors(),
     express.json(),
+    //implement apollo server as an express middleware
     expressMiddleware(server, {
       context: async ({ req }) => ({ token: req.headers.token }),
     }),
   );
   
+  //start express server
   await new Promise((resolve) => httpServer.listen({ port: PORT }, resolve));
   console.log(`Server ready at http://localhost:3000/graphql`);
 }
 
-export default ApolloStart();
+export default startServer();
