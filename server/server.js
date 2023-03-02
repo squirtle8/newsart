@@ -11,12 +11,11 @@ const PORT = 3000;
 const app = express();
 
 // routers
-import newsRouter from './rest/routes/news.js';
-app.use('/news', newsRouter);
-// import artRouter from './art';
-// app.use('/art', artRouter);
-// import userRouter from './user';
-// app.use('/user', userRouter);
+import userRouter from './rest/routes/user.js';
+app.use('/user', userRouter);
+
+//datasources
+import NewsAPI from './gql/datasource/news-api.js';
 
 app.get('/',
   (req, res) => res.sendFile(path.join(__dirname, '../build/index.html'))
@@ -25,8 +24,10 @@ app.get('/',
 
 const startServer = async() => {
 
+  // This line of code is necessary because Apollo Server requires a custom HTTP server to be used with it, rather than relying on the default server provided by Express
   const httpServer = http.createServer(app);
   
+  // typeDefs = schema, resolvers = resolver functions, ApolloServerPluginDrainHttpServer plugin is used to enable graceful server shutdown
   const server = new ApolloServer({
     typeDefs,
     resolvers,
@@ -42,7 +43,15 @@ const startServer = async() => {
     express.json(),
     //implement apollo server as an express middleware
     expressMiddleware(server, {
-      context: async ({ req }) => ({ token: req.headers.token }),
+      // context is an object that contains data that is shared between all resolvers during the execution of a GraphQL query or mutation
+      context: async () => {
+        const { cache } = server;
+        return {
+          dataSources: {
+            newsAPI: new NewsAPI({ cache }),
+          }
+        }
+      },
     }),
   );
   
