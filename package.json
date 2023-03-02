@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/squirtle8/newsart#readme",
   "dependencies": {
+    "@apollo/datasource-rest": "^5.0.2",
     "@apollo/server": "^4.4.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
