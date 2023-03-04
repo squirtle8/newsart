@@ -6,9 +6,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
-export default Card = (props) => {
-
+const Post = (props) => {
   return (
     <div>
       <Card sx={{ maxWidth: 345 }}>
@@ -38,3 +38,6 @@ export default Card = (props) => {
     </div>
   );
 }
+
+export default Post;
+

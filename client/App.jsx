@@ -10,7 +10,7 @@ export const App = () => {
       <div>
         <h1>hello world</h1>
       </div>
-      <SearchBar />
+      {/* <SearchBar /> */}
       <MainContainer />
     </>
   );
