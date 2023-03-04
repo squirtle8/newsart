@@ -2,28 +2,49 @@
   "name": "newsart",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "type": "module",
+  "main": "client/index.js",
+  "homepage": "/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node client/index.js",
+    "dev": "nodemon server/gql-server.js & webpack-dev-server --open",
+    "prod": "webpack --mode=production"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/squirtle8/newsart.git"
-  },
-  "author": "Tony Van, Judy Wu, Peter Makhnatch, Raymond Huang",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/squirtle8/newsart/issues"
-  },
-  "homepage": "https://github.com/squirtle8/newsart#readme",
   "dependencies": {
     "@apollo/server": "^4.4.0",
-    "body-parser": "^1.20.2",
+    "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
     "express": "^4.18.2",
     "graphql": "^16.6.0",
-    "http": "^0.0.1-security"
+    "http": "^0.0.1-security",
+    "node": "^19.6.1",
+    "nodemon": "^2.0.20",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router": "^6.4.1",
+    "react-router-dom": "^6.4.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.2.3",
+    "concurrently": "^5.0.0",
+    "cross-env": "^6.0.3",
+    "css-loader": "^6.5.1",
+    "eslint": "^7.17.0",
+    "eslint-plugin-react": "^7.21.5",
+    "html-webpack-plugin": "^5.5.0",
+    "nodemon": "^2.0.19",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.64.1",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-hot-middleware": "^2.24.3"
   }
 }
