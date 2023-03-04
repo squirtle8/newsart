@@ -1,13 +1,15 @@
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import * as dotenv from 'dotenv';
+dotenv.config();
 import cors from 'cors';
 import http from 'http';
 import express from 'express';
 import { typeDefs }  from './gql/typeDefs.js';
 import { resolvers } from './gql/resolvers.js';
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 const app = express();
 
 // routers
@@ -57,7 +59,7 @@ const startServer = async() => {
   
   //start express server
   await new Promise((resolve) => httpServer.listen({ port: PORT }, resolve));
-  console.log(`Server ready at http://localhost:3000/graphql`);
+  console.log(`Server ready at http://localhost:${PORT}/graphql`);
 }
 
 export default startServer();

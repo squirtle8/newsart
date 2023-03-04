@@ -1,8 +1,10 @@
 
+import * as dotenv from 'dotenv';
+dotenv.config();
 // import openai npm library here
 import { Configuration, OpenAIApi } from 'openai';
 
-const API_KEY = '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';
+const API_KEY = process.env.OPENAI_API_KEY;
 const configuration = new Configuration({
   apiKey: API_KEY
 });
@@ -31,6 +33,7 @@ export const resolvers = {
               n: 1,
               size: "256x256"
             })
+            console.log("response", response);
             return response.data.data[0].url;
           }
         }
