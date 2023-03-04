@@ -29,8 +29,8 @@ const MainContainer = ({ onNewsSelected }) => {
   //   getTopHeadlines();
   // }, []); 
 
-  const defaultImage = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fcharlesmalave&psig=AOvVaw3HNt1ApOv0LQhIDqp2gqlf&ust=1678042775431000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCOj58M76wv0CFQAAAAAdAAAAABAE';
-
+  const defaultImage = 'https://www.seiu1000.org/sites/main/files/main-images/camera_lense_0.jpeg';
+  
   return (
     <>
       {data.news.map((props,i) => (
