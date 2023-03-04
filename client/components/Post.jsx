@@ -9,6 +9,8 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const Post = (props) => {
+  const { image, link} = props;
+  console.log(image);
   return (
     <div>
       <Card sx={{ maxWidth: 345 }}>
@@ -16,9 +18,9 @@ const Post = (props) => {
           component="img"
           alt="green iguana"
           height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
+          image= {image}
         />
-        <CardContent>
+        {/* <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             Lizard
           </Typography>
@@ -26,13 +28,13 @@ const Post = (props) => {
             Lizards are a widespread group of squamate reptiles, with over 6,000
             species, ranging across all continents except Antarctica
           </Typography>
-        </CardContent>
-        <CardActions>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
+        </CardContent> */}
+        <CardActions style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+          <IconButton aria-label="add to favorites" >
+            <FavoriteIcon style={{fill: "red"}}/>
           </IconButton>
-          <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
+          {/* <Button size="small">Share</Button> */}
+          <Button size="small">Comments</Button>
         </CardActions>
       </Card>
     </div>

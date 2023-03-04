@@ -6,7 +6,7 @@ export default class NewsAPI extends RESTDataSource {
   baseURL = 'https://newsapi.org/v2/';
 
   async getTopHeadlines() {
-    return this.get(`top-headlines?sources=bbc-news&apiKey=${API_KEY}`);
+    return this.get(`top-headlines?country=us&apiKey=${API_KEY}`);
   }
 
   // async getArticlesByKeywords(keyword) {
