@@ -45,11 +45,14 @@ const startServer = async() => {
     express.json(),
     //implement apollo server as an express middleware
     expressMiddleware(server, {
-      // context is an object that contains data that is shared between all resolvers during the execution of a GraphQL query or mutation
+      // context/contextValue is an object that contains data that is shared between all resolvers during the execution of a GraphQL query or mutation
+      // a new context object is initialized for every request made
       context: async () => {
+        //save internal cache from RestAPIdatasources
         const { cache } = server;
         return {
           dataSources: {
+            //create a new instance of the subclasses for every context initialization and persist the cache through each instance
             newsAPI: new NewsAPI({ cache }),
           }
         }
