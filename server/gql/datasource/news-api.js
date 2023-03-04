@@ -5,7 +5,7 @@ dotenv.config();
 const API_KEY = process.env.NEWS_API_KEY;
 
 export default class NewsAPI extends RESTDataSource {
-  baseURL = 'https://newsapi.org/v2/';
+  baseURL = process.env.NEWS_URL;
 
   async getTopHeadlines() {
     return this.get(`top-headlines?country=us&apiKey=${API_KEY}`);
