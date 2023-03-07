@@ -15,20 +15,15 @@ query GetTopHeadlines {
 }
 `;
 
-const MainContainer = ({ onNewsSelected }) => {
-  // const [cards, setCards] = useState([]);
+const MainContainer = ({ cards, setCards }) => {
 
   const { loading, error, data } = useQuery(GET_TOP_HEADLINES, { errorPolicy: "all" });
 
   if (loading) return <p>Loading...</p>;
   // if (error) return <p>Error : {error.message}</p>
   if (error) console.log(JSON.stringify(error, null, 2));
-  console.log(data.news);
-  // setCards(data.news);
-
-  // useEffect(() => {
-  //   getTopHeadlines();
-  // }, []); 
+  // console.log(data.news);
+  setCards(data.news);
 
   const defaultImage = 'https://www.seiu1000.org/sites/main/files/main-images/camera_lense_0.jpeg';
   
@@ -39,17 +34,17 @@ const MainContainer = ({ onNewsSelected }) => {
           props.image ? <Post key={i} image={props.image} link={props.link}/> : <Post key={i} image={defaultImage} link={props.link} />
         ))} */}
           <Grid container item spacing={3}>
-            {data.news.slice(0,3).map((props,i) => (
+            {cards.slice(0,3).map((props,i) => (
               props.image ? <Post key={i} image={props.image} link={props.link}/> : <Post key={i} image={defaultImage} link={props.link} />
               ))}
           </Grid>
           <Grid container item spacing={3}>
-            {data.news.slice(3,6).map((props,i) => (
+            {cards.slice(3,6).map((props,i) => (
               props.image ? <Post key={i} image={props.image} link={props.link}/> : <Post key={i} image={defaultImage} link={props.link} />
               ))}
           </Grid>
           <Grid container item spacing={3}>
-            {data.news.slice(6,9).map((props,i) => (
+            {cards.slice(6,9).map((props,i) => (
               props.image ? <Post key={i} image={props.image} link={props.link}/> : <Post key={i} image={defaultImage} link={props.link} />
               ))}
           </Grid>

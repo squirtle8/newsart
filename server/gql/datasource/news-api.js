@@ -11,9 +11,9 @@ export default class NewsAPI extends RESTDataSource {
     return this.get(`top-headlines?country=us&apiKey=${API_KEY}`);
   }
 
-  // async getArticlesByKeywords(keyword) {
-    // return this.get(`everything?q=${keyword}&apiKey=${API_KEY}`);
-  // }
+  async getByKeyword(keyword) {
+    return this.get(`everything?q=${keyword}&apiKey=${API_KEY}`);
+  }
 
   // async getArticlesByCategory(category) {
 
