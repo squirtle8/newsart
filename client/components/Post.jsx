@@ -7,6 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { Link } from "react-router-dom";
 
 const Post = (props) => {
   const { image, link} = props;
@@ -19,6 +20,7 @@ const Post = (props) => {
           alt="green iguana"
           height="140"
           image= {image}
+          onClick = {()=> window.open(link)}
         />
         {/* <CardContent>
           <Typography gutterBottom variant="h5" component="div">

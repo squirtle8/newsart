@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, gql } from '@apollo/client';
+import {Grid } from '@mui/material';
 
 import Post from './Post.jsx';
 
@@ -33,9 +34,27 @@ const MainContainer = ({ onNewsSelected }) => {
   
   return (
     <>
-      {data.news.map((props,i) => (
-        props.image ? <Post key={i} image={props.image} link={props.link}/> : <Post key={i} image={defaultImage} link={props.link} />
-      ))}
+      <Grid container spacing={1}>
+        {/* {data.news.slice(0,9).map((props,i) => (
+          props.image ? <Post key={i} image={props.image} link={props.link}/> : <Post key={i} image={defaultImage} link={props.link} />
+        ))} */}
+          <Grid container item spacing={3}>
+            {data.news.slice(0,3).map((props,i) => (
+              props.image ? <Post key={i} image={props.image} link={props.link}/> : <Post key={i} image={defaultImage} link={props.link} />
+              ))}
+          </Grid>
+          <Grid container item spacing={3}>
+            {data.news.slice(3,6).map((props,i) => (
+              props.image ? <Post key={i} image={props.image} link={props.link}/> : <Post key={i} image={defaultImage} link={props.link} />
+              ))}
+          </Grid>
+          <Grid container item spacing={3}>
+            {data.news.slice(6,9).map((props,i) => (
+              props.image ? <Post key={i} image={props.image} link={props.link}/> : <Post key={i} image={defaultImage} link={props.link} />
+              ))}
+          </Grid>
+        
+      </Grid>
     </>
   );
 }
