@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default SearchBar = () => {
+const SearchBar = () => {
 
   return (
     <>
@@ -17,3 +17,5 @@ export default SearchBar = () => {
     </>
   );
 }
+
+export default SearchBar;

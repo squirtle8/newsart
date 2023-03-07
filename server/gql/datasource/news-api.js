@@ -1,12 +1,14 @@
 import { RESTDataSource } from '@apollo/datasource-rest';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-const API_KEY = '7db942c7e3474c9989030d0aacfbc143';
+const API_KEY = process.env.NEWS_API_KEY;
 
 export default class NewsAPI extends RESTDataSource {
   baseURL = 'https://newsapi.org/v2/';
 
   async getTopHeadlines() {
-    return this.get(`top-headlines?sources=bbc-news&apiKey=${API_KEY}`);
+    return this.get(`top-headlines?country=us&apiKey=${API_KEY}`);
   }
 
   // async getArticlesByKeywords(keyword) {

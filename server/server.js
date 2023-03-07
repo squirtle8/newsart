@@ -1,13 +1,15 @@
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import * as dotenv from 'dotenv';
+dotenv.config();
 import cors from 'cors';
 import http from 'http';
 import express from 'express';
 import { typeDefs }  from './gql/typeDefs.js';
 import { resolvers } from './gql/resolvers.js';
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 const app = express();
 
 // routers
@@ -43,11 +45,14 @@ const startServer = async() => {
     express.json(),
     //implement apollo server as an express middleware
     expressMiddleware(server, {
-      // context is an object that contains data that is shared between all resolvers during the execution of a GraphQL query or mutation
+      // context/contextValue is an object that contains data that is shared between all resolvers during the execution of a GraphQL query or mutation
+      // a new context object is initialized for every request made
       context: async () => {
+        //save internal cache from RestAPIdatasources
         const { cache } = server;
         return {
           dataSources: {
+            //create a new instance of the subclasses for every context initialization and persist the cache through each instance
             newsAPI: new NewsAPI({ cache }),
           }
         }
@@ -57,7 +62,7 @@ const startServer = async() => {
   
   //start express server
   await new Promise((resolve) => httpServer.listen({ port: PORT }, resolve));
-  console.log(`Server ready at http://localhost:3000/graphql`);
+  console.log(`Server ready at http://localhost:${PORT}/graphql`);
 }
 
 export default startServer();
