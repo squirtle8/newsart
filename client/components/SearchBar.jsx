@@ -5,29 +5,14 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import TextField from '@mui/material/TextField';
 
+const SearchBar = ({ setSearchText }) => {
 
-const GET_BY_KEYWORD = gql`
-  query GetByKeyword {
-    news {
-      title
-      desc
-      link
-      image
-    }
-  }
-`;
-
-const SearchBar = ({ searchText, setSearchText }) => {
+  const [value, setValue] = useState('')
 
   const submit = async(e) => {
     e.preventDefault();
-    if (!searchText) return;
-
-    const { loading, error, data } = useQuery(GET_BY_KEYWORD, { errorPolicy: "all" });
-
-    if (loading) return <p>Loading...</p>;
-    if (error) console.log(JSON.stringify(error, null, 2));
-    setCards(data.news);
+    console.log("current search value", value)
+    setSearchText(value);
   }
 
   return (
@@ -35,7 +20,7 @@ const SearchBar = ({ searchText, setSearchText }) => {
       <form>
         <TextField
           onInput={e => {
-            setSearchText(e.target.value);
+            setValue(e.target.value);
           }}
           variant="outlined"
           search="Search headlines..."

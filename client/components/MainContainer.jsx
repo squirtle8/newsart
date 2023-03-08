@@ -15,15 +15,31 @@ query GetTopHeadlines {
 }
 `;
 
-const MainContainer = ({ cards, setCards }) => {
+const GET_BY_KEYWORD = (keyword) => (
+  gql`
+  query GetByKeyword {
+    keyword(word: ${keyword}) {
+      title
+      desc
+      link
+      image
+    }
+  }
+`
+);
 
-  const { loading, error, data } = useQuery(GET_TOP_HEADLINES, { errorPolicy: "all" });
+const MainContainer = ({ searchText, cards, setCards }) => {
+
+  let qry;
+  if (searchText === '') qry = GET_TOP_HEADLINES;
+  else qry = GET_BY_KEYWORD('"' + searchText + '"');
+  console.log("qry", qry);
+  const { loading, error, data } = useQuery(qry, { errorPolicy: "all" });
 
   if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error : {error.message}</p>
-  if (error) console.log(JSON.stringify(error, null, 2));
-  // console.log(data.news);
-  setCards(data.news);
+  if (error) console.log("in main container", JSON.stringify(error, null, 2));
+  console.log('data.news in mc --> ', data.news);
+  // setCards(data.news);
 
   const defaultImage = 'https://www.seiu1000.org/sites/main/files/main-images/camera_lense_0.jpeg';
   
@@ -34,21 +50,20 @@ const MainContainer = ({ cards, setCards }) => {
           props.image ? <Post key={i} image={props.image} link={props.link}/> : <Post key={i} image={defaultImage} link={props.link} />
         ))} */}
           <Grid container item spacing={3}>
-            {cards.slice(0,3).map((props,i) => (
+            {data.news.slice(0,3).map((props,i) => (
               props.image ? <Post key={i} image={props.image} link={props.link}/> : <Post key={i} image={defaultImage} link={props.link} />
               ))}
           </Grid>
           <Grid container item spacing={3}>
-            {cards.slice(3,6).map((props,i) => (
+            {data.news.slice(3,6).map((props,i) => (
               props.image ? <Post key={i} image={props.image} link={props.link}/> : <Post key={i} image={defaultImage} link={props.link} />
               ))}
           </Grid>
           <Grid container item spacing={3}>
-            {cards.slice(6,9).map((props,i) => (
+            {data.news.slice(6,9).map((props,i) => (
               props.image ? <Post key={i} image={props.image} link={props.link}/> : <Post key={i} image={defaultImage} link={props.link} />
               ))}
           </Grid>
-        
       </Grid>
     </>
   );

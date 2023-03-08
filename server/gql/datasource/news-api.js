@@ -12,6 +12,7 @@ export default class NewsAPI extends RESTDataSource {
   }
 
   async getByKeyword(keyword) {
+    console.log("in function getByKeyword", keyword);
     return this.get(`everything?q=${keyword}&apiKey=${API_KEY}`);
   }
 

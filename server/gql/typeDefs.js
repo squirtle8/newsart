@@ -7,5 +7,6 @@ export const typeDefs = `#graphql
   }
   type Query {
     news: [Article]
+    keyword(word: String): [Article]
   }
 `;
