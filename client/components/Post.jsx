@@ -11,14 +11,19 @@ import { Link } from "react-router-dom";
 
 const Post = (props) => {
   const { image, link} = props;
+  const [active, setActive] = useState('false')
+  const handleClick = () =>{
+    setActive(!active)
+  }
+
   console.log(image);
   return (
     <div>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 300, paddingRight:5}}>
         <CardMedia
           component="img"
           alt="green iguana"
-          height="140"
+          height="200"
           image= {image}
           onClick = {()=> window.open(link)}
         />
@@ -32,8 +37,8 @@ const Post = (props) => {
           </Typography>
         </CardContent> */}
         <CardActions style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-          <IconButton aria-label="add to favorites" >
-            <FavoriteIcon style={{fill: "red"}}/>
+          <IconButton aria-label="add to favorites" onClick={handleClick}>
+            <FavoriteIcon style={{fill: active ? "gray" : "red" }}/>
           </IconButton>
           {/* <Button size="small">Share</Button> */}
           <Button size="small">Comments</Button>
@@ -44,4 +49,3 @@ const Post = (props) => {
 }
 
 export default Post;
-

@@ -50,18 +50,18 @@ export default {
             test: /\.mjs$/,
             include: /node_modules/,
             type: "javascript/auto",
+        },
+        {
+          test: /\.(woff(2)?|ttf|eot|svg|png)(\?v=\d+\.\d+\.\d+)?$/,
+          use: [{
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              publicPath: 'assets'
+            }
+          }
+          ]
         }
-        // {
-        //   test: /\.(woff(2)?|ttf|eot|svg|png)(\?v=\d+\.\d+\.\d+)?$/,
-        //   use: [{
-        //     loader: 'file-loader',
-        //     options: {
-        //       name: '[name].[ext]',
-        //       outputPath: 'fonts/'
-        //     }
-        //   }
-        //   ]
-        // }
       ]
     }
 }
